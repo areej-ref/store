@@ -1,0 +1,10 @@
+<div class="ion-justify-content-center ion-align-items-center" style="display: flex">
+  <ion-label style="font-size: 12px;font-weight: bold">{{item.name}}</ion-label>
+  <div class="quantity">
+    <ion-button color="success" (click)="reduceQuantity()">-</ion-button>
+    <ion-label>{{item.quantity}}</ion-label>
+    <!--  <ion-input type="number" min="1" id="quantity" [value]="item.quantity" (ionChange)="emit()"></ion-input>-->
+    <ion-button color="success" (click)="increaseQuantity()">+</ion-button>
+  </div>
+  <ion-icon style="font-size: 16px" color="danger" name="trash-outline" (click)="delete.emit(item)"></ion-icon>
+</div>

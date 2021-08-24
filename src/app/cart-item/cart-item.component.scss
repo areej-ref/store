@@ -1,0 +1,17 @@
+.quantity {
+  display: flex;
+  margin-right: 1%;
+  margin-left: auto;
+  float: right;
+  align-items: center;
+
+  .button {
+    height: 15px;
+  }
+
+  ion-label {
+    font-size: 12px;
+    font-weight: bold;
+    width: 15px;
+  }
+}

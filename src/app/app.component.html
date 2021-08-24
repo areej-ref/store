@@ -1,3 +1,13 @@
 <ion-app>
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-buttons slot="secondary">
+        <ion-button (click)="showModal()">
+          <ion-icon color="success" slot="icon-only" name="cart-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-title>Smart Phone</ion-title>
+    </ion-toolbar>
+  </ion-header>
   <ion-router-outlet></ion-router-outlet>
 </ion-app>

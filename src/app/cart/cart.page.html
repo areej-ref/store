@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title style="display: inline-block">Cart</ion-title>
+    <ion-icon class="ion-padding-end ion-float-right" name="close-circle" (click)="dismiss()"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list *ngIf="getCartItems().length>0">
+    <ion-item *ngFor="let item of getCartItems()">
+      <app-cart-item style="width: 100%;" [item]="item" (delete)="delete($event)"></app-cart-item>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-button class="ion-no-margin" color="success" expand="full">Payment</ion-button>

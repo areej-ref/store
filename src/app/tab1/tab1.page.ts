@@ -1,12 +1,23 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ConfigService} from '../config.service';
 
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
-  styleUrls: ['tab1.page.scss']
+  styleUrls: ['tab1.page.scss'],
+  providers: [ConfigService]
 })
-export class Tab1Page {
+export class Tab1Page implements OnInit {
+  public products: Array<any> = [];
 
-  constructor() {}
+  constructor(private configService: ConfigService) {
+  }
 
+  ngOnInit() {
+    this.products = this.configService.getProduct(1);
+  }
+
+  addToCart(item: any) {
+    this.configService.addToCart(item);
+  }
 }

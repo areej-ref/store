@@ -1,0 +1,93 @@
+{
+  "data": {
+    "categories": [
+      {
+        "id": 1,
+        "name": "Samsung",
+        "icon": "logo-android"
+      },
+      {
+        "id": 2,
+        "name": "IPhone",
+        "icon": "logo-apple"
+      }
+    ],
+    "products": [
+      {
+        "id": 1,
+        "name": "Galaxy S21 Ultra 5G",
+        "category": {
+          "id": 1,
+          "name": {
+            "id": 1,
+            "name": "Samsung"
+          }
+        },
+        "image": "galaxy-s21-ultra-5g.jpg",
+        "price": 1200000,
+        "discount": 10,
+        "isNew": true
+      },
+      {
+        "id": 2,
+        "name": "Galaxy S20 FE 5G",
+        "category": {
+          "id": 1,
+          "name": "Samsung"
+        },
+        "image": "galaxy-s20-fe-5g.jpg",
+        "price": 700000,
+        "discount": 5,
+        "isNew": true
+      },
+      {
+        "id": 3,
+        "name": "Galaxy Note20 Ultra 5G",
+        "category": {
+          "id": 1,
+          "name": "Samsung"
+        },
+        "image": "galaxy-note20-ultra-5g.jpg",
+        "price": 1200000,
+        "discount": 0,
+        "isNew": true
+      },
+      {
+        "id": 4,
+        "name": "Galaxy Z Flip3 5G",
+        "category": {
+          "id": 1,
+          "name": "Samsung"
+        },
+        "image": "galaxy-z-flip3-5g.jpg",
+        "price": 1100000,
+        "discount": 15,
+        "isNew": false
+      },
+      {
+        "id": 4,
+        "name": "iPhone 12 Pro",
+        "category": {
+          "id": 2,
+          "name": "IPhone"
+        },
+        "image": "iPhone-12-pro.jpg",
+        "price": 1000000,
+        "discount": 0,
+        "isNew": true
+      },
+      {
+        "id": 5,
+        "name": "iPhone SE Leather Case",
+        "category": {
+          "id": 2,
+          "name": "IPhone"
+        },
+        "image": "iPhone-se-leather-case.jpg",
+        "price": 4500000,
+        "discount": 10,
+        "isNew": true
+      }
+    ]
+  }
+}

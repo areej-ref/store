@@ -1,17 +1,7 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <ion-row  class="page-padding">
+    <ion-col *ngFor="let product of products" sizeMd="3" sizeSm="12" size="12">
+      <app-explore-container [product]="product" (addToCart)="addToCart($event)"></app-explore-container>
+    </ion-col>
+  </ion-row>
 </ion-content>

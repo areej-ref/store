@@ -24,3 +24,24 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+.page-padding {
+  padding: 5% 0 !important;
+}
+.setting-modal .modal-wrapper {
+  --border-radius: 20px;
+  --width: 300px;
+  --height: 80%;
+  --border-style: solid;
+  --border-color: green;
+  border-width: 5px;
+  top: 10%;
+  right: 10px;
+  position: absolute;
+}
+.setting-alert .alert-wrapper {
+  border-style: solid;
+  border-color: green;
+  border-width: 5px;
+  border-radius: 20px;
+}
