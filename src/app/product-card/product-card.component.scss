@@ -1,0 +1,42 @@
+ion-card {
+ height: 342px;
+}
+
+.card-img {
+  height: 200px;
+}
+
+ion-label {
+  color: white;
+  position: absolute;
+  font-size: 12px;
+  border-radius: 2em 0 0 0;
+  padding: 3px 15px;
+  right: 0;
+  z-index: inherit;
+}
+
+#new {
+  background-color: green;
+  top: 60%;
+}
+
+#discount {
+  background-color: orangered;
+  top: 70%;
+}
+
+.old-price {
+  color: orangered;
+  text-decoration: line-through;
+}
+
+ion-card-content {
+  padding: 0 5%;
+}
+
+ion-button {
+  position: absolute;
+  bottom: 1px;
+  width: 100%;
+}

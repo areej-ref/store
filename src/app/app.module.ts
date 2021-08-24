@@ -4,6 +4,7 @@ import {RouteReuseStrategy} from '@angular/router';
 
 import {IonicModule, IonicRouteStrategy} from '@ionic/angular';
 import {HttpClientModule} from '@angular/common/http';
+import { NgEventBus } from 'ng-event-bus';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -15,6 +16,7 @@ import {ConfigService} from './config.service';
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
   providers: [
     ConfigService,
+    NgEventBus,
     {
       provide: RouteReuseStrategy,
       useClass: IonicRouteStrategy

@@ -7,9 +7,9 @@
 <ion-content>
   <ion-list *ngIf="getCartItems().length>0">
     <ion-item *ngFor="let item of getCartItems()">
-      <app-cart-item style="width: 100%;" [item]="item" (delete)="delete($event)"></app-cart-item>
+      <app-cart-item style="width: 100%;" [item]="item" (delete)="delete($event)" (updateQuantity)="updatePrice($event)"></app-cart-item>
     </ion-item>
   </ion-list>
 </ion-content>
-
+<h4 class="ion-padding-horizontal">Total Price: <span class="ion-float-end" style="color: green">${{totalPrice}}</span></h4>
 <ion-button class="ion-no-margin" color="success" expand="full">Payment</ion-button>

@@ -1,0 +1,17 @@
+<ion-card>
+  <ion-card-header>
+    <ion-router-link [href]="'/product/'+product.id">
+      <ion-img class="card-img" [src]="'assets/images/'+product.image" [alt]="product.name"></ion-img>
+      <ion-label id="new" *ngIf="product.isNew">new</ion-label>
+      <ion-label id="discount" *ngIf="product.discount>0">{{product.discount}}% OFF</ion-label>
+      <ion-card-title>{{product.name}}</ion-card-title>
+    </ion-router-link>
+  </ion-card-header>
+  <div *ngIf="product.discount>0">
+    <ion-card-content>Price: <span class="old-price">${{product.price}}</span></ion-card-content>
+    <ion-card-content>After Discount: ${{product.price - product.price * product.discount / 100}}</ion-card-content>
+  </div>
+  <ion-card-content *ngIf="product.discount===0">Price: ${{product.price}}</ion-card-content>
+
+  <ion-button color="success" expand="full" (click)="addToCart()">Buy</ion-button>
+</ion-card>

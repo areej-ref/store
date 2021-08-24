@@ -5,7 +5,6 @@ import {ConfigService} from '../config.service';
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss'],
-  providers: [ConfigService]
 })
 export class Tab1Page implements OnInit {
   public products: Array<any> = [];
@@ -14,10 +13,6 @@ export class Tab1Page implements OnInit {
   }
 
   ngOnInit() {
-    this.products = this.configService.getProduct(1);
-  }
-
-  addToCart(item: any) {
-    this.configService.addToCart(item);
+    this.products = this.configService.getProducts(1);
   }
 }

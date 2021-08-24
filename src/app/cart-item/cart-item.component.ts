@@ -9,8 +9,8 @@ import {ConfigService} from '../config.service';
 export class CartItemComponent implements OnInit {
 
   @Input() item: any;
-  // @Output() quantityChanged = new EventEmitter<number>();
   @Output() delete = new EventEmitter<any>();
+  @Output() updateQuantity = new EventEmitter<any>();
 
   constructor(private configService: ConfigService) {
   }
@@ -18,19 +18,17 @@ export class CartItemComponent implements OnInit {
   ngOnInit() {
   }
 
-  // emit() {
-  //   this.quantityChanged.emit(this.item);
-  // }
-
   reduceQuantity() {
     if (this.item.quantity > 1) {
       this.configService.reduceQuantity(this.item);
       this.item.quantity--;
+      this.updateQuantity.emit({item: this.item, action: '-'});
     }
   }
 
   increaseQuantity() {
     this.configService.increaseQuantity(this.item);
     this.item.quantity++;
+    this.updateQuantity.emit({item: this.item, action: '+'});
   }
 }

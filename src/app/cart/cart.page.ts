@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ModalController} from '@ionic/angular';
+import {Component, OnInit} from '@angular/core';
+import {ModalController} from '@ionic/angular';
 import {ConfigService} from '../config.service';
-import { AlertController } from '@ionic/angular';
+import {AlertController} from '@ionic/angular';
 
 @Component({
   selector: 'app-cart',
@@ -11,21 +11,29 @@ import { AlertController } from '@ionic/angular';
 export class CartPage implements OnInit {
 
   public items: Array<any> = [];
-  constructor(public modalCtrl: ModalController, private configService: ConfigService, public alertController: AlertController) {}
+  totalPrice = 0;
+
+  constructor(public modalCtrl: ModalController, private configService: ConfigService, public alertController: AlertController) {
+  }
 
   ngOnInit() {
     this.items = this.configService.getCartItems();
+    this.items.forEach(item => {
+      if (item.discount > 0) {
+        this.totalPrice += (item.price - item.price * item.discount / 100) * item.quantity;
+      } else {
+        this.totalPrice += item.price * item.quantity;
+      }
+    });
   }
+
   dismiss() {
     this.modalCtrl.dismiss();
   }
-  getCartItems(){
+
+  getCartItems() {
     return this.configService.getCartItems();
   }
-
-  // updateQuantity(item: any) {
-  //   this.configService.addToCart(item);
-  // }
 
   async delete(item: any) {
     const alert = await this.alertController.create({
@@ -47,5 +55,19 @@ export class CartPage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  updatePrice(data) {
+    let price = 0;
+    if (data.item.discount > 0) {
+      price = data.item.price - data.item.price * data.item.discount / 100;
+    } else {
+      price = data.item.price;
+    }
+    if (data.action === '+') {
+      this.totalPrice += price;
+    } else {
+      this.totalPrice -= price;
+    }
   }
 }

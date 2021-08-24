@@ -2,6 +2,7 @@
   <ion-header [translucent]="true">
     <ion-toolbar>
       <ion-buttons slot="secondary">
+        <ion-label class="notification-count" *ngIf="cartItemsCount> 0">{{cartItemsCount}}</ion-label>
         <ion-button (click)="showModal()">
           <ion-icon color="success" slot="icon-only" name="cart-outline"></ion-icon>
         </ion-button>

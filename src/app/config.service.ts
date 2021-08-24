@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {NgEventBus} from 'ng-event-bus';
 
 @Injectable()
 export class ConfigService {
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private eventBus: NgEventBus) {
   }
 
   async load() {
@@ -21,7 +22,7 @@ export class ConfigService {
     }
   }
 
-  getProduct(category: number) {
+  getProducts(category: number) {
     if (localStorage.getItem('data')) {
       const data: any = JSON.parse(localStorage.getItem('data'));
       if (category > 0) {
@@ -32,21 +33,31 @@ export class ConfigService {
     }
   }
 
+  getProduct(id: number) {
+    const products: Array<any> = JSON.parse(localStorage.getItem('data')).products;
+    return products.find(item => item.id === id);
+  }
+
   getCartItems() {
     return localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : [];
   }
 
-  setCartItem(cartItems: any) {
-
-  }
-
   addToCart(item: any) {
     const cartItems: Array<any> = this.getCartItems();
-    item.quantity = 1;
-    cartItems.push(item);
+    let isExist = false;
+    cartItems.forEach(cartItem => {
+      if (item.id === cartItem.id) {
+        cartItem.quantity++;
+        isExist = true;
+      }
+    });
+    if (!isExist) {
+      item.quantity = 1;
+      cartItems.push(item);
+    }
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
     let cartItemsCount = (localStorage.getItem('cartItemsCount')) ? JSON.parse(localStorage.getItem('cartItemsCount')) : 0;
-    localStorage.setItem('cartItemsCount', JSON.stringify(++cartItemsCount));
+    this.setCartItemsCount(++cartItemsCount);
   }
 
   reduceQuantity(item: any) {
@@ -58,7 +69,7 @@ export class ConfigService {
     });
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
     let cartItemsCount = (localStorage.getItem('cartItemsCount')) ? JSON.parse(localStorage.getItem('cartItemsCount')) : 0;
-    localStorage.setItem('cartItemsCount', JSON.stringify(--cartItemsCount));
+    this.setCartItemsCount(--cartItemsCount);
   }
 
   increaseQuantity(item: any) {
@@ -70,16 +81,28 @@ export class ConfigService {
     });
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
     let cartItemsCount = (localStorage.getItem('cartItemsCount')) ? JSON.parse(localStorage.getItem('cartItemsCount')) : 0;
-    localStorage.setItem('cartItemsCount', JSON.stringify(++cartItemsCount));
+    this.setCartItemsCount(++cartItemsCount);
   }
 
   deleteFromCart(item: any) {
     const cartItems: Array<any> = this.getCartItems();
+    let cartItemsCount = (localStorage.getItem('cartItemsCount')) ? JSON.parse(localStorage.getItem('cartItemsCount')) : 0;
     cartItems.forEach((cartItem, index) => {
       if (item.id === cartItem.id) {
+        cartItemsCount -= item.quantity;
         cartItems.splice(index, 1);
       }
     });
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    this.setCartItemsCount(cartItemsCount);
+  }
+
+  setCartItemsCount(cartItemsCount: number) {
+    localStorage.setItem('cartItemsCount', JSON.stringify(cartItemsCount));
+    this.eventBus.cast('updateCartItemsCount', cartItemsCount);
+  }
+
+  getCartItemsCount() {
+    return (localStorage.getItem('cartItemsCount')) ? JSON.parse(localStorage.getItem('cartItemsCount')) : 0;
   }
 }

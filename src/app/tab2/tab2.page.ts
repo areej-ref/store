@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ConfigService} from '../config.service';
 
 @Component({
@@ -7,17 +7,13 @@ import {ConfigService} from '../config.service';
   styleUrls: ['tab2.page.scss'],
   providers: [ConfigService]
 })
-export class Tab2Page {
+export class Tab2Page implements OnInit{
   public products: Array<any> = [];
 
   constructor(private configService: ConfigService) {
   }
 
   ngOnInit() {
-    this.products = this.configService.getProduct(2);
-  }
-
-  addToCart(item: any) {
-    this.configService.addToCart(item);
+    this.products = this.configService.getProducts(2);
   }
 }

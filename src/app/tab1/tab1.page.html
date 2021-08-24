@@ -1,7 +1,7 @@
 <ion-content [fullscreen]="true">
   <ion-row  class="page-padding">
     <ion-col *ngFor="let product of products" sizeMd="3" sizeSm="12" size="12">
-      <app-explore-container [product]="product" (addToCart)="addToCart($event)"></app-explore-container>
+      <app-explore-container [product]="product"></app-explore-container>
     </ion-col>
   </ion-row>
 </ion-content>
